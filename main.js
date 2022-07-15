@@ -1,5 +1,5 @@
 let inventary = [
-    {
+    /* {
         codigo:'P006575',
         producto:'Zapatillas Nike Air 1',
         precio:'$40.000',
@@ -16,15 +16,14 @@ let inventary = [
         producto:'Buzo Adidas',
         precio:'$20.000',
         stock: '15'
-    }
+    } */
 ]
 
-let bodyInventary = document.getElementById('bodyTable')
+let table = document.getElementById('bodyTable')
 
 function fillTable () {
-    bodyInventary.innerHTML = ''
     inventary.forEach((product) => {
-        bodyInventary.innerHTML += `
+        table.innerHTML += `
             <tr>
                 <th scope="row">${product.codigo}</th>
                 <td>${product.producto}</td>
@@ -35,8 +34,8 @@ function fillTable () {
                     <button type="button" class="btn btn-danger">Eliminar</button>
                 </td>    
             </tr>
-        `
-    })
+            `   
+    });
 }
 
 fillTable()
@@ -45,5 +44,18 @@ let inputCodigo = document.getElementById('codigo')
 let inputProducto = document.getElementById('producto')
 let inputPrecio = document.getElementById('precio')
 let inputStock = document.getElementById('stock')
-let addButton = document.getElementById('btnSave')
+let btnAdd = document.getElementById('btnAdd')
+
+btnAdd.addEventListener('click', addProduct)
+
+function addProduct () {
+    let product = {
+        codigo: inputCodigo.value,
+        producto: inputProducto.value,
+        precio: inputPrecio.value,
+        stock: inputStock.value
+    }
+    inventary.push(product)
+    fillTable()
+}
 
